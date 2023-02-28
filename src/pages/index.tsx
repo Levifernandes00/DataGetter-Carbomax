@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { default as React, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { FaDownload, FaSync } from 'react-icons/fa';
-import { Puff } from 'react-loading-icons';
+import ReactLoading from 'react-loading';
 import { database } from '../lib/firebase/clientApp';
 
 const dateSort = (aResults: String[], bResults: String[]) => {
@@ -126,7 +126,7 @@ const MainPage: React.FC = () => {
 
   if(isLoading) return (
     <div className="h-screen py-2 px-5 overflow-x-auto flex justify-center items-center center relative bg-gray-600">
-      <Puff width={100} height={100} />
+       <ReactLoading type="cylon" color="white" height={100} width={100} />
     </div>
   )
 

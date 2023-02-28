@@ -1,12 +1,12 @@
 import { getAuth } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import Puff from 'react-loading-icons/dist/esm/components/puff';
+import ReactLoading from 'react-loading';
 import { database } from '../lib/firebase/clientApp';
 
-const Setup: React.FC = () => {
+const Setup: FC = () => {
   const router = useRouter()
   const [companyId, setCompanyId] = useState("")
   const auth = getAuth()
@@ -56,7 +56,7 @@ const Setup: React.FC = () => {
 
   if(isLoading) return (
     <div className="h-screen py-2 px-5 overflow-x-auto flex justify-center items-center center relative bg-gray-600">
-      <Puff width={100} height={100} />
+      <ReactLoading type="cylon" color="white" height={100} width={100} />
     </div>
   )
 
