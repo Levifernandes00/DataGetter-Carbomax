@@ -4,12 +4,7 @@ import { default as React, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import ReactLoading from 'react-loading';
 
-const dateSort = (aResults: String[], bResults: String[]) => {
-  const aDate = new Date(aResults[0].split("-")[0])
-  const bDate = new Date(bResults[0].split("-")[0])
 
-  return aDate.getTime() - bDate.getTime();
-}
 const MainPage: React.FC = () => {
   const router = useRouter()
   const [email, setEmail] = useState('')

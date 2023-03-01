@@ -24,11 +24,8 @@ const InstrumentPage: React.FC = () => {
   const [results, setResults] = useState<String[][]>([])
 
   useEffect(() => {
-    if(!user) {
-      router.push("/login")
-      return;
-    }
-    const distributorId = user?.uid
+    if(!user) return
+    const distributorId = user.uid
     setDistributorId(distributorId)
     const {company, instrument} = router.query
 
