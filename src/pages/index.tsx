@@ -58,7 +58,7 @@ const MainPage: React.FC = () => {
             <thead className="text-xs uppercase bg-gray-900 text-gray-400">
                 <tr>
                   <th scope="col" className="py-3 px-6">
-                    Company &gt; Instrument
+                    Compan &gt; Instrument
                   </th>
                   <th scope="col" className="py-3 px-6 text-center">
                     Enter
@@ -69,7 +69,7 @@ const MainPage: React.FC = () => {
               {companies.map(company => (
                 <>
                 {companyInstruments[`${company}`].map(instrument => (
-                  <tr className=" border-b bg-gray-700 border-gray-500">
+                  <tr key={instrument} className=" border-b bg-gray-700 border-gray-500">
                     <th scope="row" className="py-4 px-6  text-white">{company} &gt; {instrument}</th>
                     <td className="py-4 px-6 text-right">
                       <button onClick={() => enterInstrument(company, instrument)} type="button" className="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 mb-2  focus:outline-none">Enter</button>
