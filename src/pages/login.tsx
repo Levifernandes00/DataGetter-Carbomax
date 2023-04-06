@@ -21,10 +21,6 @@ const MainPage: React.FC = () => {
   }
 
 
-
-
-
-
   if(loading) return (
     <div className="h-screen py-2 px-5 overflow-x-auto flex justify-center items-center center relative bg-gray-600">
        <ReactLoading type="cylon" color="white" height={100} width={100} />

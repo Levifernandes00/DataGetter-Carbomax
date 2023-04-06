@@ -21,3 +21,4 @@ export const createFirebaseApp = () => {
 
 const app = createFirebaseApp()
 export const database = getDatabase(app)
+
