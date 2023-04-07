@@ -1,7 +1,7 @@
 import { getAuth } from 'firebase/auth'
 import type { AppProps } from 'next/app'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import CarbonoDataContextProvider from '../hooks/contexts/CarbonoDataContext'
+import UserProvider from '../hooks/contexts/UserProvider'
 import Admin from '../layouts/Admin'
 import { createFirebaseApp } from '../lib/firebase/clientApp'
 import '../styles/globals.css'
@@ -13,14 +13,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
   return (
-    <CarbonoDataContextProvider>
-      {user ?
+    <UserProvider>
+      { user ?
           <Admin>
             <Component {...pageProps} />
           </Admin>
         : <Component {...pageProps} />
       }
-    </CarbonoDataContextProvider>
+    </UserProvider>
   )
 }
 

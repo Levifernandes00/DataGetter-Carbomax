@@ -1,12 +1,15 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useUserContext } from '../../hooks/contexts/UserProvider';
 import NotificationDropdown from '../Dropdowns/NotificationDropdown';
 import UserDropdown from '../Dropdowns/UserDropdown';
 
 const Sidebar: React.FC = () => {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const router = useRouter();
+  const { user } = useUserContext()
+
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-gray-900 flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -20,7 +23,7 @@ const Sidebar: React.FC = () => {
             <i className="fas fa-bars"></i>
           </button>
           {/* Brand */}
-          <Link href="/">
+          <Link href={`/companies/${user?.uid}/dashboard`}>
             <a
               href="#pablo"
               className="md:block text-left md:pb-2 text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
@@ -48,7 +51,7 @@ const Sidebar: React.FC = () => {
             <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-gray-200">
               <div className="flex flex-wrap">
                 <div className="w-6/12">
-                  <Link href="/">
+                  <Link href={`/companies/${user?.uid}/dashboard`}>
                     <a
                       href="#pablo"
                       className="md:block text-left md:pb-2 text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
@@ -89,7 +92,7 @@ const Sidebar: React.FC = () => {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
-                <Link href="/">
+                <Link href={`/companies/${user?.uid}/dashboard`}>
                   <a
                     href="#pablo"
                     className={
@@ -113,7 +116,7 @@ const Sidebar: React.FC = () => {
               </li>
 
               <li className="items-center">
-                <Link href="/history">
+                <Link  href={`/companies/${user?.uid}/history`}>
                   <a
                     className={
                       "text-xs uppercase py-3 font-bold block " +
