@@ -22,10 +22,21 @@ const HistoryRow: React.FC<Props> = ({history}) => {
       </th>
 
       <td>
-        <span>
-          <div>{history.results.tl} </div>
-          <div>{history.results.ce} </div>
-        </span>
+        <div className='row flex justify-center'>
+          <span className='text-white bg-gray-900 p-1 m-1'>TL: {history.results.tl} </span>
+          <span className='text-white bg-gray-900 p-1 m-1'>CE: {history.results.ce} </span>
+        </div>
+        {history.mode === 'MICROSTRUCTURE' && <div className='row flex justify-center'>
+          <span className='text-white bg-gray-900 p-1 m-1'>TEU: {history.results.teu} </span>
+          <span className='text-white bg-gray-900 p-1 m-1'>TER: {history.results.ter} </span>
+          <span className='text-white bg-gray-900 p-1 m-1'>REC: {history.results.rec} </span>
+        </div>}
+        {history.mode !== 'MICROSTRUCTURE' && <div className='row flex justify-center'>
+          <span className='text-white bg-gray-900 p-1 m-1'>TS: {history.results.ts} </span>
+          <span className='text-white bg-gray-900 p-1 m-1'>C: {history.results.c} </span>
+          <span className='text-white bg-gray-900 p-1 m-1'>Si: {history.results.c} </span>
+        </div>}
+
       </td>
       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
         <TableDropdown />

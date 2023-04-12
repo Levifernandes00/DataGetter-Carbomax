@@ -41,7 +41,7 @@ const CardTable: React.FC<{historyList: History[]}> = ({ historyList }) => {
                 </th>
                 <th
                   className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                    "px-6 align- text-center border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold " +
                    "bg-gray-600 text-gray-200 border-gray-500"
                   }
                 >
@@ -78,6 +78,8 @@ const CardTable: React.FC<{historyList: History[]}> = ({ historyList }) => {
 }
 
 const sort = (a: History,b: History) => {
-  return (new Date(a.date).getTime() - new Date(b.date).getTime())
+  const boolean = (new Date(a.date).getTime() - new Date(b.date).getTime()) >= 0
+  console.log(a.date, b.date,  boolean)
+  return boolean ? 1 : -1
 }
 export default CardTable;
