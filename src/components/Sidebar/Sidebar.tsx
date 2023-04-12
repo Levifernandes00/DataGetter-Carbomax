@@ -16,9 +16,9 @@ const Sidebar: React.FC = () => {
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           {/* Toggler */}
           <button
-            className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+            className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none rounded border border-solid border-transparent"
             type="button"
-            onClick={() => setCollapseShow("bg-white m-2 py-3 px-6")}
+            onClick={() => setCollapseShow("bg-gray-900 m-2 py-3 px-6")}
           >
             <i className="fas fa-bars"></i>
           </button>
@@ -63,7 +63,7 @@ const Sidebar: React.FC = () => {
                 <div className="w-6/12 flex justify-end">
                   <button
                     type="button"
-                    className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+                    className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none rounded border border-solid border-transparent"
                     onClick={() => setCollapseShow("hidden")}
                   >
                     <i className="fas fa-times"></i>
@@ -77,7 +77,7 @@ const Sidebar: React.FC = () => {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="border-0 px-3 py-2 h-12 border border-solid  border-gray-200 placeholder-gray-300 text-gray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+                  className="border-0 px-3 py-2 h-12 border border-solid  border-gray-200 placeholder-gray-300 text-white bg-gray-700 rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
                 />
               </div>
             </form>
@@ -97,7 +97,7 @@ const Sidebar: React.FC = () => {
                     href="#pablo"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname === "/"
+                      (router.pathname === `/companies/${user?.uid}/dashboard`
                         ? "text-blue-500 hover:text-blue-600"
                         : "text-gray-400 hover:text-gray-300")
                     }
@@ -105,7 +105,7 @@ const Sidebar: React.FC = () => {
                     <i
                       className={
                         "fas fa-tv mr-2 text-sm " +
-                        (router.pathname === "/"
+                        (router.pathname === `/companies/${user?.uid}/dashboard`
                           ? "opacity-75"
                           : "text-gray-300")
                       }

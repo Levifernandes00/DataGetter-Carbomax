@@ -1,17 +1,13 @@
 
-import { GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';
 import CardTable from '../../../components/Cards/CardTable';
-import { History } from '../../../interfaces/History';
-import admin from '../../../lib/firebase/nodeApp';
+import { useHistoryContext } from '../../../hooks/contexts/HistoryProvider';
 
 
-type Props = {
-  historyList: History[]
-}
 
 
-const History: React.FC<Props> = ({ historyList }) => {
+const HistoryPage: React.FC = () => {
+  const {historyList} = useHistoryContext()
 
   return (
     <>
@@ -25,37 +21,4 @@ const History: React.FC<Props> = ({ historyList }) => {
 }
 
 
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id  = params?.id as string
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/history/get`, {
-    headers: {
-      companyid: id,
-      secret: process.env.NEXTAUTH_SECRET || ""
-    }
-  })
-  const { historyList } = await res.json()
-
-
-
-  return {
-    props: { historyList },
-    revalidate: 84600
-  }
-}
-
-export const getStaticPaths: GetStaticPaths = async() => {
-  const { users } = await admin.auth().listUsers()
-  const ids = users.map(user => user.uid)
-
-  const paths = ids.map(id => ({ params: { id }}))
-
-  return {
-    paths,
-    fallback: true
-  }
-}
-
-
-export default History;
+export default HistoryPage;

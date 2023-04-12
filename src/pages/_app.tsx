@@ -1,6 +1,7 @@
 import { getAuth } from 'firebase/auth'
 import type { AppProps } from 'next/app'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import HistoryProvider from '../hooks/contexts/HistoryProvider'
 import UserProvider from '../hooks/contexts/UserProvider'
 import Admin from '../layouts/Admin'
 import { createFirebaseApp } from '../lib/firebase/clientApp'
@@ -14,12 +15,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <UserProvider>
-      { user ?
-          <Admin>
-            <Component {...pageProps} />
-          </Admin>
-        : <Component {...pageProps} />
-      }
+      <HistoryProvider>
+        { user ?
+            <Admin>
+              <Component {...pageProps} />
+            </Admin>
+          : <Component {...pageProps} />
+        }
+      </HistoryProvider>
     </UserProvider>
   )
 }

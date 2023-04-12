@@ -4,7 +4,6 @@ import HistoryRow from '../Rows/HistoryRow';
 
 
 const CardTable: React.FC<{historyList: History[]}> = ({ historyList }) => {
-  console.log(historyList)
   return (
     <>
       <div

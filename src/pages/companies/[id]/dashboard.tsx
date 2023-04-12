@@ -1,12 +1,25 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { default as React, useEffect } from 'react';
 import ReactLoading from 'react-loading';
+import { useHistoryContext } from '../../../hooks/contexts/HistoryProvider';
 import { logout, useUserContext } from '../../../hooks/contexts/UserProvider';
+import { History } from '../../../interfaces/History';
+import admin from '../../../lib/firebase/nodeApp';
+
+type Props = {
+  historyList: History[]
+}
 
 
-const Dashboard: React.FC = () => {
+const Dashboard: React.FC<Props> = ({ historyList }) => {
   const router = useRouter()
   const { user, loading } = useUserContext()
+  const {setHistoryList} = useHistoryContext()
+
+  useEffect(() => {
+    setHistoryList(historyList)
+  }, [historyList])
 
   useEffect(() => {
     if(!user) {
@@ -54,5 +67,36 @@ const Dashboard: React.FC = () => {
   )
 }
 
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id  = params?.id as string
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/history/get`, {
+    headers: {
+      companyid: id,
+      secret: process.env.NEXTAUTH_SECRET || ""
+    }
+  })
+  const { historyList } = await res.json()
+
+
+
+  return {
+    props: { historyList },
+    revalidate: 84600
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async() => {
+  const { users } = await admin.auth().listUsers()
+  const ids = users.map(user => user.uid)
+
+  const paths = ids.map(id => ({ params: { id }}))
+
+  return {
+    paths,
+    fallback: true
+  }
+}
 
 export default Dashboard;

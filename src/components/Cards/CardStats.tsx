@@ -5,7 +5,7 @@ type Props = {
   statSubtitle: string
   statTitle: string
   statArrow: string
-  statPercent: string
+  statPercent: number
   statPercentColor: string
   statDescripiron: string
   statIconName: string
@@ -57,7 +57,7 @@ const CardStats: React.FC<Props> = ({
                     : ""
                 }
               ></i>{" "}
-              {statPercent}%
+              {!!statPercent && `${statPercent.toFixed(2)} %`}
             </span>
             <span className="whitespace-nowrap">{statDescripiron}</span>
           </p>
@@ -71,7 +71,7 @@ CardStats.defaultProps = {
   statSubtitle: "Traffic",
   statTitle: "350,897",
   statArrow: "up",
-  statPercent: "3.48",
+  statPercent: 3.48,
   statPercentColor: "text-emerald-500",
   statDescripiron: "Since last month",
   statIconName: "far fa-chart-bar",
